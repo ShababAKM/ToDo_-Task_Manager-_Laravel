@@ -11,4 +11,11 @@ class todosController extends Controller
         $todos=todo::all();//(static function "all()" fetches all DB record in the todos table )
         return view('todos.index')->with('todos',$todos);
     }
+
+    public function show($todoid)
+    {
+       //dd($todoid)
+       $todo = Todo::find($todoid);
+        return view('todos.show')->with('todo',$todo);
+    }
 }
