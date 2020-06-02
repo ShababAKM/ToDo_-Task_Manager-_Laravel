@@ -1,5 +1,5 @@
 @extends('layout.app')
-
+@section('title')   Create Todo   @endsection
 @section('content')
     <h1 class="text-center my-5">Create Todos</h1>
 
