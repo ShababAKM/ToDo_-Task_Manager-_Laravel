@@ -63,4 +63,12 @@ class todosController extends Controller
        session()->flash('success', 'Task Deleted Successfully');
        return redirect('/todos');
     }
+    public function complete(todo $todo)
+    {
+       //$todo=todo::find($todoId); 
+       $todo->completed=true;
+       $todo->save();
+       session()->flash('success', 'Task Completed Successfully');
+       return redirect('/todos');
+    }
 }
