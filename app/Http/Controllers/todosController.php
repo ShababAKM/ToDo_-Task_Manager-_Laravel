@@ -27,7 +27,7 @@ class todosController extends Controller
 
     public function store()
     {
-       $this->validate(request(),['name'=>'required|min:6|max:12','description'=>'required']); 
+       $this->validate(request(),['name'=>'required','description'=>'required']); 
        $data=request()->all();
        $todo = new todo();
        $todo->name=$data['name'];
@@ -35,6 +35,23 @@ class todosController extends Controller
        $todo->completed=false;
        $todo->save();
 
+       return redirect('/todos');
+    }
+    public function edit($todoId)
+    {
+       //dd($todoid)
+        $todo=Todo::find($todoId);
+        return view('todos.edit')->with('todo',$todo);
+    }
+
+    public function update($todoId)
+    {
+       $this->validate(request(),['name'=>'required','description'=>'required']);
+       $data=request()->all(); 
+       $todo=todo::find($todoId); 
+       $todo->name=$data['name'];
+       $todo->description=$data['description'];
+       $todo->save();
        return redirect('/todos');
     }
 }
